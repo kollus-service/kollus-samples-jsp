@@ -1,3 +1,4 @@
+<%@page import="java.net.URLEncoder"%>
 <%@page import="java.nio.charset.Charset"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
@@ -16,13 +17,13 @@
 </head>
 <body>
 	<%
-		final String securityKey = "SECURITY_KEY";
-		final String customKey = "CUSTOM_KEY";
+		final String securityKey = "hdyang2";
+		final String customKey = "1ba769ae9972603d72658b8566dc4fa2e5782dcfede54c527831b70f4aa9d7f3";
 		final String clientUserId = "CLIENT_USER_ID";
-		final int expireTime = 5; // 5 MINUTES
-		final String[] mediaItems = {  "MEDIA_CONTENT_KEY1","MEDIA_CONTENT_KEY2" }; 
+		final int expireTime = 60 * 24 * 2; // 5 MINUTES
+		final String[] mediaItems = { "Qils7XzI" };
 	%>
-	<%!public String createPayload(String cuid, int exptMinutes, String[] mediaKeys) {
+	<%!public String createPayload(String cuid, int exptMinutes, String... mediaKeys) {
 		if (mediaKeys == null || mediaKeys.length <= 0) {
 			return null;
 		}
@@ -36,6 +37,7 @@
 		for (int idx = 0; idx < nMediakeys; idx++) {
 			sb.append("{\"mckey\":\"");
 			sb.append(mediaKeys[idx]);
+			//sb.append("\", \"mcpf\":\"zeusedu-pc1-hd\"}");
 			sb.append("\"}");
 			if (idx < nMediakeys - 1) {
 				sb.append(",");
@@ -49,8 +51,7 @@
 		final String payloadJson = String.format(fmt_payloadJson, cuid, expt, sb.toString());
 		return payloadJson;
 	}%>
-	<%!
-	public String jwt_encode(String payload, String secretKey) throws InvalidKeyException, NoSuchAlgorithmException {
+	<%!public String jwt_encode(String payload, String secretKey) throws InvalidKeyException, NoSuchAlgorithmException {
 		String header = "{\"typ\": \"JWT\", \"alg\": \"HS256\"}";
 		Charset charset = Charset.forName("UTF-8");
 		String h = Base64.encodeBase64URLSafeString(header.getBytes(charset));
@@ -65,13 +66,26 @@
 	<%!public String getUrl(String userkey, String token) {
 		return String.format("http://v.kr.kollus.com/s?jwt=%s&custom_key=%s&a", token, userkey);
 	}%>
+
+
+	<%!public String getSrUrl(String userkey, String token) {
+		return String.format("http://v.kr.kollus.com/sr?jwt=%s&custom_key=%s&a", token, userkey);
+	}%>
 	<%
 		String payload = createPayload(clientUserId, expireTime, mediaItems);
 		String token = jwt_encode(payload, securityKey);
 		String url = getUrl(customKey, token);
+		String srurl = getSrUrl(customKey, token);
 	%>
-	
-	<iframe src="<%=url %>"></iframe>
+	<h1>KollusPlayer</h1>
+	<iframe src="<%=url%>"></iframe>
+
+
+	<h1>SR MODE<h1>
+			<video width="320" height="240"> <source
+				src="<%=srurl %>" type="video/mp4"> Your browser does not
+			support the video tag. </video>
+</html>
 </body>
 
 </html>
