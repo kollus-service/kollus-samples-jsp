@@ -28,7 +28,7 @@
 		}
 	%>
 	<%
-	final String securityKey = "hdayng2";
+	final String securityKey = "SECURITY_KEY";
 	final String customKey = "CUSTOM_KEY";
 	final int expireTime = 30;
 	final String msg = "This video is not permitted to you.";
