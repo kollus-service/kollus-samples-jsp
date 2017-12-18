@@ -12,6 +12,7 @@
 <%@ page import="java.util.ArrayList"%>
 <%@ page import="java.util.HashMap"%>
 <%@ page import="com.google.gson.Gson"%>
+<%@ page import="com.google.gson.internal.LinkedTreeMap" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -27,7 +28,7 @@
 		}
 	%>
 	<%
-	final String securityKey = "SECURITY_KEY";
+	final String securityKey = "hdayng2";
 	final String customKey = "CUSTOM_KEY";
 	final int expireTime = 30;
 	final String msg = "This video is not permitted to you.";
@@ -48,13 +49,13 @@
 
 	<%
 		String p_items = request.getParameter("items");
-		List<HashMap<String, Object>> items = new Gson().fromJson(p_items, List.class);
-
+		List<LinkedTreeMap<String, Object>> items = new Gson().fromJson(p_items, List.class);
+		System.out.println(items);
 		List<HashMap<String, Object>> resultPayload = new ArrayList<HashMap<String, Object>>();
 
-		for (HashMap<String, Object> item : items) {
+		for (LinkedTreeMap item : items) {
 			
-			int kind = Integer.parseInt(item.get("kind").toString());
+			int kind = (int)Float.parseFloat(item.get("kind").toString());
 			String clientUserId = item.get("client_user_id").toString();
 			String mediaContentKey = item.get("media_content_key").toString();
 			long start_at = Long.parseLong(item.get("start_at").toString());
