@@ -58,7 +58,7 @@
 			int kind = (int)Float.parseFloat(item.get("kind").toString());
 			String clientUserId = item.get("client_user_id").toString();
 			String mediaContentKey = item.get("media_content_key").toString();
-			long start_at = Long.parseLong(item.get("start_at").toString());
+			
 			
 			HashMap<String, Object> resultItem = new HashMap<String, Object>();
 			resultItem.put("kind", kind);
@@ -73,6 +73,7 @@
 			case 2:
 				break;
 			case 3:
+				long start_at = Long.parseLong(item.get("start_at").toString());
 				resultItem.put("start_at", start_at);
 				break;
 
