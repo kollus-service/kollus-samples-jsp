@@ -21,7 +21,7 @@
 		final String customKey = "1ba769ae9972603d72658b8566dc4fa2e5782dcfede54c527831b70f4aa9d7f3";
 		final String clientUserId = "CLIENT_USER_ID";
 		final int expireTime = 60 * 24 * 2; // 5 MINUTES
-		final String[] mediaItems = { "Qils7XzI" };
+		final String[] mediaItems = { "Mf8ufQ6h" };
 	%>
 	<%!public String createPayload(String cuid, int exptMinutes, String... mediaKeys) {
 		if (mediaKeys == null || mediaKeys.length <= 0) {
@@ -47,7 +47,7 @@
 		Calendar c = Calendar.getInstance();
 		c.setTime(now);
 		c.add(Calendar.MINUTE, exptMinutes);
-		long expt = c.getTime().getTime();
+		long expt = c.getTime().getTime() / 1000;
 		final String payloadJson = String.format(fmt_payloadJson, cuid, expt, sb.toString());
 		return payloadJson;
 	}%>
