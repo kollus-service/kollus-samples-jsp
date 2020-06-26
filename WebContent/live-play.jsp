@@ -17,8 +17,8 @@
 </head>
 <body>
 	<%
-		final String securityKey = "hdyang2";
-		final String customKey = "1ba769ae9972603d72658b8566dc4fa2e5782dcfede54c527831b70f4aa9d7f3";
+		final String securityKey = "SECURITY_KEY";
+		final String customKey = "CUSTOM_USER_KEY";
 		final String clientUserId = "CLIENT_USER_ID";
     final String liveChannelKey = "CHANNEL_KEY";
 		final int expireTime = 5; // 5 MINUTES
