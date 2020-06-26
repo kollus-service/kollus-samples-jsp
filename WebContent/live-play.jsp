@@ -30,7 +30,7 @@
 		if (exptMinutes <= 0) {
 			return null;
 		}
-		String fmt_payloadJson = "{\"cuid\": \"%s\",\"expt\": %d,\"live_media_channel_key\": \"[%s]\"}";
+		String fmt_payloadJson = "{\"cuid\": \"%s\",\"expt\": %d,\"live_media_channel_key\": \"%s\"}";
 		Date now = new Date();
 		Calendar c = Calendar.getInstance();
 		c.setTime(now);
