@@ -23,7 +23,7 @@
     final String liveChannelKey = "CHANNEL_KEY";
 		final int expireTime = 5; // 5 MINUTES
 	%>
-	<%!public String createPayload(String cuid, int exptMinutes, String... mediaKeys) {
+	<%!public String createPayload(String cuid, int exptMinutes, String lmcKey) {
 		if (mediaKeys == null || mediaKeys.length <= 0) {
 			return null;
 		}
