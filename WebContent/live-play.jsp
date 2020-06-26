@@ -60,7 +60,7 @@
 		return String.format("http://v-live-kr.kollus.com/sr?jwt=%s&custom_key=%s&a", token, userkey);
 	}%>
 	<%
-		String payload = createPayload(clientUserId, expireTime, mediaItems);
+		String payload = createPayload(clientUserId, expireTime, liveChannelKey);
 		String token = jwt_encode(payload, securityKey);
 		String url = getUrl(customKey, token);
 		String srurl = getSrUrl(customKey, token);
