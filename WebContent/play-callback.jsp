@@ -17,13 +17,6 @@
 <title>Play Video</title>
 </head>
 <body>
-
-	<%
-		if (request.getMethod() != "POST") {
-			response.setStatus(401);
-			response.getWriter().write("This Method(" + request.getMethod() + ") is Not Supported");
-		}
-	%>
 	<%
 		final String securityKey = "SECURITY_KEY";
 		final String customKey = "CUSTOM_KEY";
